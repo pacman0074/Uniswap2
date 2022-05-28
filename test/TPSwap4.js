@@ -22,7 +22,7 @@ const slippageTolerance = new Percent('50', '500') // 10 bips, or 0.10%
 const amountOutMin = trade.minimumAmountOut(slippageTolerance).raw // needs to be converted to e.g. hex
 console.log(amountOutMin);
 const path = [WETH[DAI.chainId].address, DAI.address]
-const to = '0x5b268529c7C7774E257FA8A27791bD26C697260C' // should be a checksummed recipient address
+const to = '0x70997970C51812dc3A010C7d01b50e0d17dc79C8' // should be a checksummed recipient address
 const deadline = Math.floor(Date.now() / 1000) + 60 * 20 // 20 minutes from the current Unix time
 const value = trade.inputAmount.raw // // needs to be converted to e.g. hex
 
@@ -30,8 +30,11 @@ const provider = ethers.getDefaultProvider('http://localhost:8545'); // utilisat
 
 
 const signer = new ethers.Wallet(process.env.PRIVATEKEY); // récupérer son wallet grâce au private key
-
+console.log("signer")
+console.log(signer)
 const account = signer.connect(provider); // récupérer l’account qui va effectuer la transaction 
+console.log("account")
+console.log(account)
 
 
 const abi = [{"inputs":[{"internalType":"uint256","name":"amountOutMin","type":"uint256"},{"internalType":"address[]","name":"path","type":"address[]"},{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"deadline","type":"uint256"}],"name":"swapExactETHForTokens","outputs":[{"internalType":"uint256[]","name":"amounts","type":"uint256[]"}],"stateMutability":"payable","type":"function"}]
