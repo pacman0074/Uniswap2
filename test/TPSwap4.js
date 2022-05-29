@@ -5,7 +5,7 @@ const ethers = require('ethers');
 
 
 module.exports = async function(done){
-    const DAI = new Token(ChainId.MAINNET, '0x6B175474E89094C44Da98b954EedeAC495271d0F', 18)
+    const DAI = new Token(ChainId.MAINNET, '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48', 18)
 
 // note that you may want/need to handle this async code differently,
 // for example if top-level await is not an option
@@ -20,7 +20,6 @@ const trade = new Trade(route, new TokenAmount(WETH[DAI.chainId], amountIn), Tra
 const slippageTolerance = new Percent('50', '500') // 10 bips, or 0.10%
 
 const amountOutMin = trade.minimumAmountOut(slippageTolerance).raw // needs to be converted to e.g. hex
-console.log(amountOutMin);
 const path = [WETH[DAI.chainId].address, DAI.address]
 const to = '0x70997970C51812dc3A010C7d01b50e0d17dc79C8' // should be a checksummed recipient address
 const deadline = Math.floor(Date.now() / 1000) + 60 * 20 // 20 minutes from the current Unix time
@@ -30,11 +29,8 @@ const provider = ethers.getDefaultProvider('http://localhost:8545'); // utilisat
 
 
 const signer = new ethers.Wallet(process.env.PRIVATEKEY); // récupérer son wallet grâce au private key
-console.log("signer")
-console.log(signer)
 const account = signer.connect(provider); // récupérer l’account qui va effectuer la transaction 
-console.log("account")
-console.log(account)
+
 
 
 const abi = [{"inputs":[{"internalType":"uint256","name":"amountOutMin","type":"uint256"},{"internalType":"address[]","name":"path","type":"address[]"},{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"deadline","type":"uint256"}],"name":"swapExactETHForTokens","outputs":[{"internalType":"uint256[]","name":"amounts","type":"uint256[]"}],"stateMutability":"payable","type":"function"}]
