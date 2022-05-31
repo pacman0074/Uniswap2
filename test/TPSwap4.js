@@ -7,8 +7,7 @@ const ethers = require('ethers');
 module.exports = async function(done){
     const DAI = new Token(ChainId.MAINNET, '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48', 18)
 
-// note that you may want/need to handle this async code differently,
-// for example if top-level await is not an option
+
 const pair = await Fetcher.fetchPairData(DAI, WETH[DAI.chainId])
 
 const route = new Route([pair], WETH[DAI.chainId])
@@ -17,7 +16,7 @@ const amountIn = '1000000000000000000' // 1 WETH
 
 const trade = new Trade(route, new TokenAmount(WETH[DAI.chainId], amountIn), TradeType.EXACT_INPUT)
 
-const slippageTolerance = new Percent('50', '500') // 10 bips, or 0.10%
+const slippageTolerance = new Percent('10', '100') // 10 bips, or 0.10%
 
 const amountOutMin = trade.minimumAmountOut(slippageTolerance).raw // needs to be converted to e.g. hex
 const path = [WETH[DAI.chainId].address, DAI.address]
@@ -46,5 +45,5 @@ console.log(`Transaction hash: ${Tx.hash}`); // afficher le hash de la transacti
 const receipt = await Tx.wait(); // récupérer la transaction receipt 
 console.log(`Transaction was mined in block ${receipt.blockNumber}`);
 
-    done();
+done();
 }
