@@ -5,7 +5,7 @@ const ethers = require('ethers');
 
 
 module.exports = async function(done){
-    const DAI = new Token(ChainId.MAINNET, '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48', 18)
+const DAI = new Token(ChainId.MAINNET, '0x6B175474E89094C44Da98b954EedeAC495271d0F', 18)
 
 
 const pair = await Fetcher.fetchPairData(DAI, WETH[DAI.chainId])
@@ -20,7 +20,7 @@ const slippageTolerance = new Percent('10', '100') // 10 bips, or 0.10%
 
 const amountOutMin = trade.minimumAmountOut(slippageTolerance).raw // needs to be converted to e.g. hex
 const path = [WETH[DAI.chainId].address, DAI.address]
-const to = '0x70997970C51812dc3A010C7d01b50e0d17dc79C8' // should be a checksummed recipient address
+const to = '0xCD523f4Be57e25FF34745b88B884375b6F7c4502' // should be a checksummed recipient address
 const deadline = Math.floor(Date.now() / 1000) + 60 * 20 // 20 minutes from the current Unix time
 const value = trade.inputAmount.raw // // needs to be converted to e.g. hex
 
