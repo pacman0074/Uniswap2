@@ -20,7 +20,7 @@ const slippageTolerance = new Percent('10', '100') // 10 bips, or 0.10%
 
 const amountOutMin = trade.minimumAmountOut(slippageTolerance).raw // needs to be converted to e.g. hex
 const path = [WETH[DAI.chainId].address, DAI.address]
-const to = '0xCD523f4Be57e25FF34745b88B884375b6F7c4502' // should be a checksummed recipient address
+const to = '0x70997970C51812dc3A010C7d01b50e0d17dc79C8' // should be a checksummed recipient address
 const deadline = Math.floor(Date.now() / 1000) + 60 * 20 // 20 minutes from the current Unix time
 const value = trade.inputAmount.raw // // needs to be converted to e.g. hex
 
