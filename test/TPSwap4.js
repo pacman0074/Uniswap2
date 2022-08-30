@@ -5,15 +5,15 @@ const ethers = require('ethers');
 
 
 module.exports = async function(done){
-    const DAI = new Token(ChainId.MAINNET, '0xdAC17F958D2ee523a2206206994597C13D831ec7', 18)
+    const DAI = new Token(ChainId.MAINNET, '0x6B175474E89094C44Da98b954EedeAC495271d0F', 18)
     
-    const pair = await Fetcher.fetchPairData(DAI, WETH[DAI.chainId])
+    const pair = await Fetcher.fetchPairData(DAI, WETH[DAI.chainId]);
     
-    const route = new Route([pair], WETH[DAI.chainId])
+    const route = new Route([pair], WETH[DAI.chainId]);
     
-    const amountIn = '1000000000000000000' // 1 WETH
+    const amountIn = '1000000000000000000'; // 1 WETH
     
-    const trade = new Trade(route, new TokenAmount(WETH[DAI.chainId], amountIn), TradeType.EXACT_INPUT)
+    const trade = new Trade(route, new TokenAmount(WETH[DAI.chainId], amountIn), TradeType.EXACT_INPUT);
     
     const slippageTolerance = new Percent('10', '100') // 10 bips, or 0.10%
     
