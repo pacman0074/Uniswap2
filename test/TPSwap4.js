@@ -35,7 +35,7 @@ module.exports = async function(done){
     
     const contractUniswap = new ethers.Contract('0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D', abi, account)
     
-    const montant = ethers.BigNumber.from('1000000000000000000');
+    const montant = ethers.BigNumber.from('5000000000000000000');
     const Tx = await contractUniswap.swapExactETHForTokens(String(amountOutMin), path, to , deadline , { value : montant, gasPrice: 20e10, gasLimit: 250000 });
     
     
