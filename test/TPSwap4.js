@@ -5,7 +5,7 @@ const ethers = require('ethers');
 
 
 module.exports = async function(done){
-    const DAI = new Token(ChainId.MAINNET, '0xdAC17F958D2ee523a2206206994597C13D831ec7', 18)
+    const DAI = new Token(ChainId.MAINNET, '0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599', 18)
     
     const pair = await Fetcher.fetchPairData(DAI, WETH[DAI.chainId]);
     
